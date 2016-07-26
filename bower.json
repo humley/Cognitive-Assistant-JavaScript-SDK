@@ -1,0 +1,17 @@
+{
+  "name": "cognitive-assistant-javascript-sdk",
+  "description": "Javascript SDK for Humley's Cognitive Assistant",
+  "main": "cognitive-assistant/h-assistant.min.js",
+  "authors": [
+    "Humley"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

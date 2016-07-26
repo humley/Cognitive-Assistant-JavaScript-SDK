@@ -1,0 +1,19 @@
+{
+  "name": "cognitive-assistant-javascript-sdk",
+  "version": "1.0.0",
+  "description": "Javascript SDK for Humley's Cognitive Assistant",
+  "main": "cognitive-assistant/h-assistant.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humley/Cognitive-Assistant-JavaScript-SDK.git"
+  },
+  "author": "Humley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/humley/Cognitive-Assistant-JavaScript-SDK/issues"
+  },
+  "homepage": "https://github.com/humley/Cognitive-Assistant-JavaScript-SDK#readme"
+}
