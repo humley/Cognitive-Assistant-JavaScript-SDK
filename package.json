@@ -1,6 +1,6 @@
 {
   "name": "cognitive-assistant-javascript-sdk",
-  "version": "1.0.0",
+  "version": "v1.0.0",
   "description": "Javascript SDK for Humley's Cognitive Assistant",
   "main": "cognitive-assistant/h-assistant.min.js",
   "scripts": {
