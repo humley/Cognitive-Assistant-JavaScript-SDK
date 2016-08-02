@@ -40,7 +40,13 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 > Talk is the core method to receive the reply from your Cognitive Assistant
 	
 **async humleyBot.sendCheckPoint(checkpointId:number, variableName:string, value:string) :null**
-> Send checkpoint to track activivty .
+> Send checkpoint to track activivty.
+>
+>Check Point Id
+>
+>Open in Browser 6001. This checkpoint should be fired when a user presses an action which has an action type of browser.
+>
+>Client Error - 8064
 
 **async humleyBot.sendFeedback(typeId) :null**
 > If "allowedfeedback" is set to true, you can send feedback on the last answer received.
@@ -100,7 +106,7 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 **Feedback type ID:**
 
 	3 = yes
-	2 = Kinda
+	2 = sort of
 	0 = No
 
 
