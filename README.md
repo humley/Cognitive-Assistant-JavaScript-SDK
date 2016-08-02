@@ -42,7 +42,7 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 **async humleyBot.sendCheckPoint(checkpointId:number, variableName:string, value:string) :null**
 > Send checkpoint to track activivty .
 
-**async humleyBot.sendFeedback(typeId**) :null**
+**async humleyBot.sendFeedback(typeId) :null**
 > If "allowedfeedback" is set to true, you can send feedback on the last answer received.
 
 
