@@ -39,23 +39,23 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 ## Methods ##
 
 
-**async humleyBot.init(interface:Init**[^interface-init] **) : boolean**
+**async humleyBot.init(interface:Init) : boolean**
 > Init: Use to start session.  If return false then an error has occurred
 
-**async humleyBot.talk(string) : interface:ConversationResult**[^interface-ConversationResult]
+**async humleyBot.talk(string) : interface:ConversationResult**
 > Talk is the core method to receive the reply from your Cognitive Assistant
 	
 **async humleyBot.sendCheckPoint(checkpointId:number, variableName:string, value:string) :null**
 > Send checkpoint to track activivty .
 
-**async humleyBot.sendFeedback(typeId**[^feedbacktype] **) :null**
+**async humleyBot.sendFeedback(typeId**) :null**
 > If "allowedfeedback" is set to true, you can send feedback on the last answer received.
 
 
 
 ##Interfaces##
 
-[^interface-init]: **interface:Init:** 
+**interface:Init:** 
 	`
 	 interface init {
 	 params: Object; // information about the user
@@ -71,7 +71,7 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 
     `
 
-[^interface-ConversationResult]: **interface:ConversationResult:** 
+**interface:ConversationResult:** 
 	`
 		interface ConversationResult {
 		    question: string;
@@ -102,7 +102,7 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 			}
 		`
 
-[^feedbacktype]: **Feedback type ID:**
+**Feedback type ID:**
 	
 	`
 		3 = yes
