@@ -2,9 +2,10 @@
   "name": "cognitive-assistant-javascript-sdk",
   "description": "Javascript SDK for Humley's Cognitive Assistant",
   "main": [
-      "cognitive-assistant/CheckPointSDK.min.js",
-      "cognitive-assistant/feedback.min.js",
-      "cognitive-assistant/h-assistant.min.js",
+    "libs/jquery.xml2json.js",
+    "cognitive-assistant/CheckPointSDK.min.js",
+    "cognitive-assistant/feedback.min.js",
+    "cognitive-assistant/h-assistant.min.js"
   ],
   "authors": [
     "Humley"
@@ -17,5 +18,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "jquery.soap": "^1.4.2"
+  }
 }
