@@ -1,0 +1,7 @@
+{
+  "globalDevDependencies": {},
+  "globalDependencies": {
+    "jquery": "registry:dt/jquery#1.10.0+20160704162008",
+    "jquery.soap": "registry:dt/jquery.soap#1.6.7+20160317120654"
+  }
+}
