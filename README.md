@@ -19,7 +19,6 @@
 
 allowfeedback is defaulted to true. This will allow you to get feedback after each question is reecived..
 
-``` 
 
 	var humleyBot = new humleyConversationBot(
 		{
@@ -29,11 +28,6 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 		},
 		allowfeedback
 	);
-
-
-
-
-```
 
 
 ## Methods ##
@@ -56,7 +50,7 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
 ##Interfaces##
 
 **interface:Init:** 
-	`
+
 	 interface init {
 	 params: Object; // information about the user
      uuid: number; // - optional humley uuid for user set by imei 
@@ -69,45 +63,45 @@ allowfeedback is defaulted to true. This will allow you to get feedback after ea
      simid: string; // - optional
 	}
 
-    `
+ 
 
 **interface:ConversationResult:** 
-	`
-		interface ConversationResult {
-		    question: string;
-		    error: boolean;
-		    replies: ConversationResultReplies[];
-		    errorInfo: any;
-		}
-	`
-	**interface:ConversationResultReplies**
-		`
-				interface ConversationResultReplies {
-			    replyId: number;
-			    actionType: string;
-			    actionURL: string;
-			    category: string;
-			    buttonId: number;
-			    confidence: number;
-			    reply: string;
-			    hasVideo: boolean;
-			    video: ConversationResultRepliesVideo;
-			}
-		`
-	**interface:ConversationResultRepliesVideo **
-		`
-			interface ConversationResultRepliesVideo {
-			    header: string;
-			    url: string;
-			}
-		`
+
+	interface ConversationResult {
+	    question: string;
+	    error: boolean;
+	    replies: ConversationResultReplies[];
+	    errorInfo: any;
+	}
+
+**interface:ConversationResultReplies**
+
+	interface ConversationResultReplies {
+	    replyId: number;
+	    actionType: string;
+	    actionURL: string;
+	    category: string;
+	    buttonId: number;
+	    confidence: number;
+	    reply: string;
+	    hasVideo: boolean;
+	    video: ConversationResultRepliesVideo;
+	}
+
+
+**interface:ConversationResultRepliesVideo**
+
+	interface ConversationResultRepliesVideo {
+	    header: string;
+	    url: string;
+	}
+
 
 **Feedback type ID:**
-	
-	`
-		3 = yes
-		2 = Kinda
-		0 = No
-	` 
+
+	3 = yes
+	2 = Kinda
+	0 = No
+
 
 
