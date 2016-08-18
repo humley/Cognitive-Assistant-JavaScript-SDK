@@ -285,6 +285,12 @@ var humleyConversationBot = function () {
             };
         }
     }, {
+        key: 'isInt',
+        value: function isInt(value) {
+            var x;
+            return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
+        }
+    }, {
         key: 'startClient',
         value: function startClient(data) {
             return __awaiter(this, void 0, Promise, regeneratorRuntime.mark(function _callee5() {
@@ -311,8 +317,8 @@ var humleyConversationBot = function () {
                                         data: data,
                                         success: function success(soapResponse) {
                                             var result = soapResponse.toJSON();
-                                            vm.cid = result.Body.OpenConvResponse.OpenConvResult.cid;
-                                            vm.uuid = result.Body.OpenConvResponse.OpenConvResult.uuid;
+                                            vm.cid = vm.isInt(result.Body.OpenConvResponse.OpenConvResult.cid) ? result.Body.OpenConvResponse.OpenConvResult.cid : '';
+                                            vm.uuid = vm.isInt(result.Body.OpenConvResponse.OpenConvResult.uuid) ? result.Body.OpenConvResponse.OpenConvResult.uuid : '';
                                             var checkpointApi = new CheckPoint(vm.credential.productId + 5000);
                                             checkpointApi.createSession({ IMEI: vm.baseData.imei, UUID: vm.uuid, sendCheckPoint: true });
                                             resolve(true);
@@ -364,8 +370,8 @@ var humleyConversationBot = function () {
                                         success: function success(soapResponse) {
                                             var result = soapResponse.toJSON();
                                             var hasError = false;
-                                            vm.cid = result.Body.TalkResponse.TalkResult.cid;
-                                            vm.uuid = result.Body.TalkResponse.TalkResult.uuid;
+                                            vm.cid = vm.isInt(result.Body.TalkResponse.TalkResult.cid) ? result.Body.TalkResponse.TalkResult.cid : '';
+                                            vm.uuid = vm.isInt(result.Body.TalkResponse.TalkResult.uuid) ? result.Body.TalkResponse.TalkResult.uuid : '';
                                             var replies = void 0;
                                             replies = [];
                                             if (result.Body.TalkResponse.TalkResult.ef === "true") {

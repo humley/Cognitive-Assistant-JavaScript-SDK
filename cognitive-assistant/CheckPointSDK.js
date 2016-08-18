@@ -1,1 +1,151 @@
-"use strict";function _classCallCheck(e,s){if(!(e instanceof s))throw new TypeError("Cannot call a class as a function")}var _createClass=function(){function e(e,s){for(var t=0;t<s.length;t++){var n=s[t];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(s,t,n){return t&&e(s.prototype,t),n&&e(s,n),s}}(),__awaiter=function(e,s,t,n){return new(t||(t=Promise))(function(o,a){function i(e){try{c(n.next(e))}catch(s){a(s)}}function r(e){try{c(n["throw"](e))}catch(s){a(s)}}function c(e){e.done?o(e.value):new t(function(s){s(e.value)}).then(i,r)}c((n=n.apply(e,s)).next())})},CheckPoint=function(){function e(s){_classCallCheck(this,e),this.baseUri="http://api.humley.com/iviewsessions/sessionswebcalls.asmx",this.appId=s}return _createClass(e,[{key:"createSession",value:function(e){var s=this;$.soap({url:this.baseUri,method:"createSession",SOAPAction:"http://localhost/SessionsWebCalls/SessionsWebCalls/createSession",appendMethodToURL:!1,envAttributes:{c:"http://schemas.xmlsoap.org/soap/encoding/",d:"http://www.w3.org/2001/XMLSchema",i:"http://www.w3.org/2001/XMLSchema-instance"},namespaceURL:"http://localhost/SessionsWebCalls/SessionsWebCalls",data:{AppID:this.appId,MSISDN:e.MSISDN||"",IPAddress:e.IPAddress||"",User_Agent:navigator.userAgent,IMEI:e.IMEI||"",UUID:e.UUID||""},success:function(t){var n=t.toJSON();"true"===n.Body.createSessionResponse.createSessionResult.result.HasError&&console.error(n.Body.createSessionResponse.createSessionResult.result.StatusCode,n.Body.createSessionResponse.createSessionResult.result.StatusMessage),s.sessionId=n.Body.createSessionResponse.createSessionResult.resultString,e.sendCheckPoint&&s.CheckPointReachedWithVariable({checkpointID:"8018",variableName:"LF",variableValue:"4"}).then(function(e){console.log(e)},function(e){console.error(e)})},error:function(e){console.error(e.toString())}})}},{key:"xmlToJson",value:function(e){var s={};if(1==e.nodeType){if(e.attributes.length>0){s["@attributes"]={};for(var t=0;t<e.attributes.length;t++){var n=e.attributes.item(t);s["@attributes"][n.nodeName]=n.nodeValue}}}else 3==e.nodeType&&(s=e.nodeValue);if(e.hasChildNodes())for(var o=0;o<e.childNodes.length;o++){var a=e.childNodes.item(o),i=a.nodeName.substring(a.nodeName.indexOf(":")+1).replace("#","");if("undefined"==typeof s[i])s[i]=this.xmlToJson(a);else{if("undefined"==typeof s[i].push){var r=s[i];s[i]=[],s[i].push(r)}s[i].push(this.xmlToJson(a))}}return s}},{key:"CheckPointReachedWithVariable",value:function(e){return __awaiter(this,void 0,Promise,regeneratorRuntime.mark(function s(){var t,n=this;return regeneratorRuntime.wrap(function(s){for(;;)switch(s.prev=s.next){case 0:return t=this,s.abrupt("return",new Promise(function(s,o){$.post("http://api.humley.com/iviewsessions/sessionswebcalls.asmx/CheckPointReachedWithVariable",{sessionId:n.sessionId,checkpointID:e.checkpointID,variableName:e.variableName,variableValue:e.variableValue}).done(function(e){s(t.xmlToJson(e).CheckPointLogged.result)}).fail(function(e){o(t.xmlToJson(e))})}));case 2:case"end":return s.stop()}},s,this)}))}}]),e}();
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator.throw(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : new P(function (resolve) {
+                resolve(result.value);
+            }).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments)).next());
+    });
+};
+
+var CheckPoint = function () {
+    function CheckPoint(appId) {
+        _classCallCheck(this, CheckPoint);
+
+        this.baseUri = 'http://api.humley.com/iviewsessions/sessionswebcalls.asmx';
+        this.appId = appId;
+    }
+
+    _createClass(CheckPoint, [{
+        key: 'createSession',
+        value: function createSession(session) {
+            var vm = this;
+            $.soap({
+                url: this.baseUri,
+                method: 'createSession',
+                SOAPAction: 'http://localhost/SessionsWebCalls/SessionsWebCalls/createSession',
+                appendMethodToURL: false,
+                envAttributes: {
+                    "c": "http://schemas.xmlsoap.org/soap/encoding/",
+                    "d": "http://www.w3.org/2001/XMLSchema",
+                    "i": "http://www.w3.org/2001/XMLSchema-instance"
+                },
+                namespaceURL: 'http://localhost/SessionsWebCalls/SessionsWebCalls',
+                data: {
+                    AppID: this.appId,
+                    MSISDN: session.MSISDN || '',
+                    IPAddress: session.IPAddress || '',
+                    User_Agent: navigator.userAgent,
+                    IMEI: session.IMEI || '',
+                    UUID: session.UUID || ''
+                },
+                success: function success(soapResponse) {
+                    var result = soapResponse.toJSON();
+                    if (result.Body.createSessionResponse.createSessionResult.result.HasError === "true") {
+                        console.error(result.Body.createSessionResponse.createSessionResult.result.StatusCode, result.Body.createSessionResponse.createSessionResult.result.StatusMessage);
+                    }
+                    vm.sessionId = result.Body.createSessionResponse.createSessionResult.resultString;
+                    if (session.sendCheckPoint) {
+                        vm.CheckPointReachedWithVariable({ checkpointID: '8018', variableName: 'LF', variableValue: '4' }).then(function (data) {
+                            console.log(data);
+                        }, function (error) {
+                            console.error(error);
+                        });
+                    }
+                },
+                error: function error(soapResponse) {
+                    console.error(soapResponse.toString());
+                }
+            });
+        }
+    }, {
+        key: 'xmlToJson',
+        value: function xmlToJson(xml) {
+            var obj = {};
+            if (xml.nodeType == 1) {
+                if (xml.attributes.length > 0) {
+                    obj["@attributes"] = {};
+                    for (var j = 0; j < xml.attributes.length; j++) {
+                        var attribute = xml.attributes.item(j);
+                        obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+                    }
+                }
+            } else if (xml.nodeType == 3) {
+                obj = xml.nodeValue;
+            }
+            if (xml.hasChildNodes()) {
+                for (var i = 0; i < xml.childNodes.length; i++) {
+                    var item = xml.childNodes.item(i);
+                    var nodeName = item.nodeName.substring(item.nodeName.indexOf(":") + 1).replace('#', '');
+                    if (typeof obj[nodeName] == "undefined") {
+                        obj[nodeName] = this.xmlToJson(item);
+                    } else {
+                        if (typeof obj[nodeName].push == "undefined") {
+                            var old = obj[nodeName];
+                            obj[nodeName] = [];
+                            obj[nodeName].push(old);
+                        }
+                        obj[nodeName].push(this.xmlToJson(item));
+                    }
+                }
+            }
+            return obj;
+        }
+    }, {
+        key: 'CheckPointReachedWithVariable',
+        value: function CheckPointReachedWithVariable(checkpoint) {
+            return __awaiter(this, void 0, Promise, regeneratorRuntime.mark(function _callee() {
+                var _this = this;
+
+                var vm;
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                vm = this;
+                                return _context.abrupt('return', new Promise(function (resolve, reject) {
+                                    $.post("http://api.humley.com/iviewsessions/sessionswebcalls.asmx/CheckPointReachedWithVariable", {
+                                        sessionId: _this.sessionId,
+                                        checkpointID: checkpoint.checkpointID,
+                                        variableName: checkpoint.variableName,
+                                        variableValue: checkpoint.variableValue
+                                    }).done(function (data) {
+                                        resolve(vm.xmlToJson(data).CheckPointLogged.result);
+                                    }).fail(function (error) {
+                                        reject(vm.xmlToJson(error));
+                                    });
+                                }));
+
+                            case 2:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+        }
+    }]);
+
+    return CheckPoint;
+}();
